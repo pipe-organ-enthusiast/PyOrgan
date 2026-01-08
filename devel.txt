@@ -1,15 +1,167 @@
 PyOrgan Development
 
-Organ
+Organ Console
     Divisions
         Stops
             Ranks
                 Pipes
-        Tremulant
+                    Harmonics
+                        ADSR
+                    ADSR
         Divisional Couplers
+        Divisionals
+        Tremulant
         Enclosure
     Couplers
     Generals
     Crescendo
     Transposer
     Metronome
+
+Computer
+    Audio - Sound Output
+    MIDI - Interface between organ console and computer
+    UI - Computer User Interface for the application
+
+
+
+
+The following flow chart should be consulted for creating the following:
+    UI Forms
+    Configuration Files
+    Configuration File Editors
+    Utilities
+
+
+Organ Editor
+    Organ Settings
+        Number of Divisions: 1 - 8
+        Number of Couplers: 1 - 84
+        Number of Generals: 1 - 10
+        Include Crescendo: T or F
+
+    Division Settings
+        Division Number: 1 - Number of Divisions
+        Division Name: Pedal, Great, Swell, Choir, Solo, Echo
+        Number of Stops: 1 - 100
+        Number of Divisional Couplers 1 - 3
+        Number of Divisionals: 1 - 10
+        Include Tremulant: T or F
+        Include Enclosure: T or F
+    
+    Stop Settings
+        Division Name: Existing Division
+        Stop List: Total Stops Available
+        Selected Stops: Stops Selected for Current Division
+
+    Divisional Coupler Settings
+        Division Name: Existing Division
+        Coupler Number: 1 - Number of Divisional Couplers
+        Coupler Type: Sub-Octave, Octave, Unison Off
+
+    Tremulant Settings
+        Division Name: Existing Division
+        Depth (Amplitude): 0.0 - 1.0
+        Rate (Frequency): (low) 0.0 - 10.0?
+
+    Enclosure Settings
+        Minimum Volume (Amplitude): 0.0
+        Maximum Volume (Amplitude): 1.0
+
+
+Stop Editor
+    Stop Information:
+        Stop Name: Given Name for Stop including either size of biggest rank or number of ranks
+        Stop Family: Foundation, Flute, String, Reed, Percussion, Mutation, Mixture
+        Number of Ranks: 1 - 10?
+    
+    Rank Information
+        Rank Number: 1 - Number of Ranks
+        Rank Size: 32', 16', 8', 4', 2'...
+        Number of Pipes: 1 - 61
+        Starting Note: C1, C#1, D1...
+
+    Pipe Information
+        Pipe Construction - Open Pipe, Closed Pipe
+        Pipe Type - Flue, Reed
+        Number of Harmonics: 1 - 20
+
+    Pipe Settings
+        *Pipe Number: 1 - Number of Pipes
+        (Give Choice of setting parameters for all pipes in a rank vs individual pipes)
+        ADSR Settings: Attack Time, Decay Time, Sustain Level, Release Time
+        Harmonic Number
+        Amplitude: 0.0 - 1.0
+        Harmonic ADSR Settings (see 'ADSR Settings' above)
+
+
+Transposer Range: -7 to +7
+
+
+Metronome Settings:
+    Number of Beats: 1 - ?
+    Beats Per Minute: 30? - 200?
+
+
+Audio Settings:
+    Audio Device: List of Available Audio Devices
+    Number of Channels: 1-8
+    Block Size: 125, 256, 512, 1024
+    Samplerate: 44100, 48000, 96000
+    Latency: low, high, float
+
+
+Sound Wave Generation
+    Sine Wave: amplitude * sin(2 * pi * frequency * sample_number / samplerate)
+
+    ADSR Envelope: amplitude that varies depending on ADSR phase
+
+    Amplitude Envelope: amplitude controlled by enclosure setting
+
+    Wind (Noise) Generator: random number generator in range of 0.0 - 1.0 to create white noise similar to wind
+
+    Tremulant Generator (Modulator): Equation same as Sine Wave. 
+                                     Multiplied to waveform sample to generate tremulant effect 
+
+
+MIDI Settings
+    Available MIDI Devices
+    Selected MIDI Input Devices
+    Selected MIDI Output Devices
+
+    MIDI Mapping
+        Divisions
+            Division Name
+            MIDI Device
+            MIDI Channel
+            Lowest Note
+            Highest Note
+            Note Off
+            Note On
+
+        Stops / Divisional Couplers / Divisionals / Tremulant / Couplers / Generals
+            Division Name
+            Stop Name
+            MIDI Device
+            MIDI Channel
+            MIDI Note
+            Note Off - For Novation Launchpad support: Considering a colour based approach
+            Note On  /
+
+
+UI Console
+    Number of Manuals
+    Include Pedals
+    Number of Stops (Auto Fill based on Division Settings)
+    Stop Placement in Stop Jams (Auto or Manual)
+    Number of Divisional Couplers (Auto Fill based on Division Settings)
+    Number of Divisionals (Auto Fill based on Division Settings)
+    Number of Tremulants (Auto Fill based on Division Settings)
+    Number of Enclosures (Auto Fill based on Division Settings)
+    Number of Couplers (Auto Fill based on Organ Settings)
+    Number of Generals (Auto Fill based on Organ Settings)
+    Include Crescendo (Auto Fill based on Organ Settings)
+
+
+UI Stop Jams (Left and Right)
+    Choice of auto generation or manual creation
