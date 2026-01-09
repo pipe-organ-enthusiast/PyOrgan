@@ -36,16 +36,16 @@ The following flow chart should be consulted for creating the following:
 Organ Editor
     Organ Settings
         Number of Divisions: 1 - 8
-        Number of Couplers: 1 - 84
-        Number of Generals: 1 - 10
+        Number of Couplers: 0 - 84
+        Number of Generals: 0 - 10
         Include Crescendo: T or F
 
     Division Settings
         Division Number: 1 - Number of Divisions
         Division Name: Pedal, Great, Swell, Choir, Solo, Echo
         Number of Stops: 1 - 100
-        Number of Divisional Couplers 1 - 3
-        Number of Divisionals: 1 - 10
+        Number of Divisional Couplers 0 - 3
+        Number of Divisionals: 0 - 10
         Include Tremulant: T or F
         Include Enclosure: T or F
     
