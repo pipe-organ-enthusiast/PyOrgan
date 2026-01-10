@@ -78,7 +78,7 @@ Stop Editor
     Rank Information
         Rank Number: 1 - Number of Ranks
         Rank Size: 32', 16', 8', 4', 2'...
-        Number of Pipes: 1 - 61
+        Number of Pipes: 13, 25, 27, 30, 32, 49, 56, 58, 61, 73, 76, 85, 88
         Starting Note: C1, C#1, D1...
 
     Pipe Information
