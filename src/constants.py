@@ -1,3 +1,4 @@
+from enum import Enum
 from typing import Final
 
 # ======================================================================================================================
@@ -601,3 +602,22 @@ NOTE_TO_MIDI: dict[str, int] = {
 # ======================================================================================================================
 def midi_to_frequency(midi_number: int, frequency_A4: float) -> float:
     return frequency_A4 * pow(2, ((midi_number - 69)/12))
+
+def validate_level(level: float) -> float:
+    if level < MINIMUM_AUDIO_LEVEL:
+        return MINIMUM_AUDIO_LEVEL
+    elif level > MAXIMUM_AUDIO_LEVEL:
+        return MAXIMUM_AUDIO_LEVEL
+    else:
+        return level
+
+
+# ======================================================================================================================
+# Enums
+# ======================================================================================================================
+class ADSR_PHASES(Enum):
+    ATTACK = "ATTACK"
+    DECAY = "DECAY"
+    SUSTAIN = "SUSTAIN"
+    RELEASE = "RELEASE"
+    COMPLETE = "COMPLETE"

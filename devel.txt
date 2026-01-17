@@ -116,12 +116,15 @@ Sound Wave Generation
 
     ADSR Envelope: amplitude that varies depending on ADSR phase
 
-    Amplitude Envelope: amplitude controlled by enclosure setting
+    Amplitude Envelope: amplitude controlled by enclosure setting - can be set by a variable
 
     Wind (Noise) Generator: random number generator in range of 0.0 - 1.0 to create white noise similar to wind
+                            use random function from built-in random library
 
     Tremulant Generator (Modulator): Equation same as Sine Wave. 
-                                     Multiplied to waveform sample to generate tremulant effect 
+                                     Multiplied to waveform sample to generate tremulant effect
+                                     depth = amplitude
+                                     frequency = rate - limited between 0Hz and 20Hz
 
 
 MIDI Settings
