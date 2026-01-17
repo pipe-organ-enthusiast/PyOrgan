@@ -1,4 +1,4 @@
-from ..constants import ADSR_PHASES, MINIMUM_AUDIO_LEVEL, MAXIMUM_AUDIO_LEVEL, validate_level
+from ..constants import AdsrPhases, MINIMUM_AUDIO_LEVEL, MAXIMUM_AUDIO_LEVEL, validate_level
 from typing import Self
 
 
@@ -22,7 +22,7 @@ class ADSR:
     # ==================================================================================================================
     def __iter__(self) -> Self:
         self.__value: float = MINIMUM_AUDIO_LEVEL
-        self.__phase: ADSR_PHASES = ADSR_PHASES.ATTACK
+        self.__phase: AdsrPhases = AdsrPhases.ATTACK
         return self
 
     def __next__(self) -> float:
@@ -35,33 +35,33 @@ class ADSR:
     # ==================================================================================================================
     def __update_value(self) -> None:
         match self.__phase:
-            case ADSR_PHASES.ATTACK:
+            case AdsrPhases.ATTACK:
                 self.__value += self.__attack_modifier
                 self.__check_upper_limit(
                     limit=MAXIMUM_AUDIO_LEVEL, 
-                    new_phase=ADSR_PHASES.DECAY
+                    new_phase=AdsrPhases.DECAY
                 )
-            case ADSR_PHASES.DECAY:
+            case AdsrPhases.DECAY:
                 self.__value -= self.__decay_modifier
                 self.__check_lower_limit(
                     limit=self.sustain_level,
-                    new_phase=ADSR_PHASES.SUSTAIN
+                    new_phase=AdsrPhases.SUSTAIN
                 )
-            case ADSR_PHASES.SUSTAIN:
+            case AdsrPhases.SUSTAIN:
                 self.__value = self.sustain_level
-            case ADSR_PHASES.RELEASE:
+            case AdsrPhases.RELEASE:
                 self.__value -= self.__release_modifier
                 self.__check_lower_limit(
                     limit=MINIMUM_AUDIO_LEVEL,
-                    new_phase=ADSR_PHASES.COMPLETE
+                    new_phase=AdsrPhases.COMPLETE
                 )
-            case ADSR_PHASES.COMPLETE:
+            case AdsrPhases.COMPLETE:
                 self.__value = MINIMUM_AUDIO_LEVEL
 
     def __check_upper_limit(
             self,
             limit: float,
-            new_phase: ADSR_PHASES
+            new_phase: AdsrPhases
     ) -> None:
         if self.__value >= limit:
             self.__update_phase(limit, new_phase)
@@ -69,7 +69,7 @@ class ADSR:
     def __check_lower_limit(
             self,
             limit: float,
-            new_phase: ADSR_PHASES
+            new_phase: AdsrPhases
     ) -> None:
         if self.__value <= limit:
             self.__update_phase(limit, new_phase)
@@ -77,13 +77,13 @@ class ADSR:
     def __update_phase(
             self,
             limit: float,
-            new_phase: ADSR_PHASES
+            new_phase: AdsrPhases
     ) -> None:
         self.__value = limit
         self.__phase = new_phase
 
     def start_release_phase(self) -> None:
-        self.__phase = ADSR_PHASES.RELEASE
+        self.__phase = AdsrPhases.RELEASE
 
     # ==================================================================================================================
     # Properties
